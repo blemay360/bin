@@ -1,0 +1,10 @@
+#!/usr/bin/expect -f
+set username [lindex $argv 0];
+set password [lindex $argv 1];
+set sysPass [lindex $argv 2];
+spawn ~/bin/vpnbook/vpnbook.sh
+expect "password for blemay360: " { send $sysPass\r }
+expect "Enter Auth Username:" { send $username\r }
+expect "Enter Auth Password:" { send $password\r }
+expect "AUTH_FAILED" { return 0 }
+interact

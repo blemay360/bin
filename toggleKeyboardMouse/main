@@ -1,0 +1,14 @@
+#!/bin/bash
+filename="/home/blemay360/bin-master/toggleKeyboardMouse/.state"
+state=$(cat $filename)
+if [ $state -eq 0 ]; then
+	xinput --disable 11
+	notify-send "Touchpad disabled"
+	rm $filename
+	echo 1 >> $filename
+else
+	xinput --enable 11
+	notify-send "Touchpad enabled"
+	rm $filename
+	echo 0 >> $filename
+fi
